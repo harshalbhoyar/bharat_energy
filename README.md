@@ -27,3 +27,22 @@ This README would normally document whatever steps are necessary to get your app
 
 * Repo owner or admin
 * Other community or team contact
+
+### Setup Instructions
+
+git clone git@bitbucket.org:projects-webapp/bharat_energy_webapp.git
+cd bharat_energy_webapp/
+
+### Setup local database with below database name, username and password will be 'postgres' in order to run in DEV environment
+psql -u postgres
+sudo -i -u postgres
+    psql
+    CREATE DATABASE bharat_energy;
+*** Exit out of the postgres shell **
+sudo apt install python3-virtualenv
+virtualenv venv
+source venv/bin/activate
+pip install django psycopg2
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
