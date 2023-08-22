@@ -55,7 +55,9 @@ ROOT_URLCONF = 'bharat_energy_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+           Path(BASE_DIR, 'templates') #include this line to your file
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
