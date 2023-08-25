@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4sr0_q9@af30q_((pp@j!z$*7rcn5yi3^qkjqisyb=%nzpf(@%'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -77,18 +78,29 @@ WSGI_APPLICATION = 'bharat_energy_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     # 'default': {
+#     #     'ENGINE': 'django.db.backends.sqlite3',
+#     #     'NAME': BASE_DIR / 'db.sqlite3',
+#     # }
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'bharat_energy',
+#         'USER': 'postgres',
+#         'PASSWORD': 'djangosql',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bharat_energy',
-        'USER': 'postgres',
-        'PASSWORD': 'djangosql',
-        'HOST': 'localhost',
-        'PORT': '',
+    "default": {
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.postgresql"),
+        "NAME": os.environ.get("SQL_DATABASE", BASE_DIR / "bharat_energy"),
+        "USER": os.environ.get("SQL_USER", "postgres"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "djangosql"),
+        "HOST": os.environ.get("SQL_HOST", "db"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
 

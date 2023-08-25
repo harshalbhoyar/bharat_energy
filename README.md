@@ -46,3 +46,8 @@ pip install django psycopg2
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
+
+
+sudo docker-compose up -d --build
+sudo docker-compose exec web python manage.py migrate --noinput
+sudo docker logs <container_id>
