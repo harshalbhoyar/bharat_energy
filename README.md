@@ -47,7 +47,8 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 
-
+sudo docker images -a;sudo docker ps -a
+sudo docker rm -vf $(sudo docker ps -aq) ; sudo docker rmi -f $(sudo docker images -aq)
 sudo docker-compose up -d --build
 sudo docker-compose exec web python manage.py migrate --noinput
 sudo docker logs <container_id>
