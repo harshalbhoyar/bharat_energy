@@ -8,6 +8,8 @@ node_modules/
 dist/
 
 venv/
+.env.dev
+bharat_energy_app/.env
 
 # Compiled Java class files
 *.class
