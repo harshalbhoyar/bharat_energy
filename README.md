@@ -51,3 +51,25 @@ python manage.py runserver
 sudo docker-compose up -d --build
 sudo docker-compose exec web python manage.py migrate --noinput
 sudo docker logs <container_id>
+
+=========================================================================================================================
+### Steps to setup project in Windows locally :
+git clone git@bitbucket.org:projects-webapp/bharat_energy_webapp.git
+cd bharat_energy_webapp/
+
+#Install postgres database and create a database with name "bharat_energy"
+#Install Python
+
+$ pip install virtualenv
+$ virtualenv venv
+$ source venv/Scripts/activate
+$ pip install django psycopg2
+$ pip install python-dotenv
+$ python manage.py makemigrations
+$ python manage.py migrate
+
+==========================================================================================================================
+
+
+
+
