@@ -16,7 +16,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=djangosql
+      - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=bharat_energy
 volumes:
   postgres_data:

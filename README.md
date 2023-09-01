@@ -47,8 +47,18 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 
-sudo docker images -a;sudo docker ps -a
-sudo docker rm -vf $(sudo docker ps -aq) ; sudo docker rmi -f $(sudo docker images -aq)
+===========
+### Run using docker compose
+cd /home/devendra/projects/bharat_energy_webapp
+sudo docker-compose up -d --build
+sudo docker-compose exec web python manage.py migrate --noinput
+sudo docker logs <container_id>
+
+============
+### In case cached images and containers exists on local system and want to create fresh setup then run below commands
+
+sudo docker images -a;sudo docker ps -a; sudo docker volume ls
+sudo docker-compose down -v ; sudo docker rm -vf $(sudo docker ps -aq) ; sudo docker rmi -f $(sudo docker images -aq)
 cd /home/devendra/projects/bharat_energy_webapp
 sudo docker-compose up -d --build
 sudo docker-compose exec web python manage.py migrate --noinput
