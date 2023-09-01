@@ -63,6 +63,7 @@ cd bharat_energy_webapp/
 $ pip install virtualenv
 $ virtualenv venv
 $ source venv/Scripts/activate
+$ pip install -r requirements.txt
 $ pip install django psycopg2
 $ pip install python-dotenv
 $ python manage.py makemigrations
