@@ -6,7 +6,7 @@ FROM python:3.11.4-slim-buster
 #     && pip install psycopg2
 
 # set work directory
-WORKDIR /home/devendra/projects/bharat_energy_webapp/bharat_energy_app
+WORKDIR /home/harshalbhoyar/Projects/bharat_energy_webapp/bharat_energy_app
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -22,11 +22,11 @@ RUN pip install -r requirements.txt
 
 # copy entrypoint.sh
 COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' /home/devendra/projects/bharat_energy_webapp/bharat_energy_app/entrypoint.sh
-RUN chmod +x /home/devendra/projects/bharat_energy_webapp/bharat_energy_app/entrypoint.sh
+RUN sed -i 's/\r$//g' /home/harshalbhoyar/Projects/bharat_energy_webapp/bharat_energy_app/entrypoint.sh
+RUN chmod +x /home/harshalbhoyar/Projects/bharat_energy_webapp/bharat_energy_app/entrypoint.sh
 
 # copy project
 COPY . .
 
 # run entrypoint.sh
-ENTRYPOINT ["/home/devendra/projects/bharat_energy_webapp/bharat_energy_app/entrypoint.sh"]
+ENTRYPOINT ["/home/harshalbhoyar/Projects/bharat_energy_webapp/bharat_energy_app/entrypoint.sh"]

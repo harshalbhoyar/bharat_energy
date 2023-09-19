@@ -1,0 +1,55 @@
+---
+- hosts: 127.0.0.1
+
+  vars:
+    home: /home/harshalbhoyar/
+    app_path: "{{ home }}Projects/bharat_energy_webapp/bharat_energy_app"
+    virtualenv: "{{ home }}Projects/bharat_energy_webapp/bharat_energy_app/venv"
+
+  
+  tasks:
+    - name: Update APT package manager repositories cache
+      become: true
+      apt:
+        update_cache: yes
+
+    - name: Install Git Package
+      become: true
+      apt:
+        name: git
+        state: latest
+        update_cache: yes
+
+    - name: Create a new directory for project
+      file:
+        path: /home/harshalbhoyar/projects_ansible
+        state: directory
+
+    - name: Checkout repository from bitbucket
+      ansible.builtin.git:
+        repo: git@bitbucket.org:projects-webapp/bharat_energy_webapp.git
+        dest: /home/harshalbhoyar/projects_ansible
+
+    
+    - name: update requirements
+      pip:
+        requirements: "{{ app_path }}/requirements.txt"
+        virtualenv: "{{ virtualenv }}"
+
+
+    - name: apply django migrations
+      django_manage:
+        command: migrate
+        app_path: "{{ app_path }}"
+        settings: bharat_energy_app.settings
+        virtualenv: "{{ virtualenv }}"
+
+
+    - name: Runserver
+      django_manage:
+        command: runserver
+        app_path: "{{ app_path }}"
+        settings: bharat_energy_app.settings
+        virtualenv: "{{ virtualenv }}"
+
+        
