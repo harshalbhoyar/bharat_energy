@@ -22,13 +22,13 @@
 
     - name: Create a new directory for project
       file:
-        path: /home/harshalbhoyar/projects_ansible
+        path: "{{ home }}projects_ansible"
         state: directory
 
     - name: Checkout repository from bitbucket
       ansible.builtin.git:
         repo: git@bitbucket.org:projects-webapp/bharat_energy_webapp.git
-        dest: /home/harshalbhoyar/projects_ansible
+        dest: "{{ home }}projects_ansible"
 
     
     - name: update requirements
