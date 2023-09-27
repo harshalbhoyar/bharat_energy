@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    image: harshalbhoyar/bharat_energy:latest
+    image: harshalbhoyar14/bharat_energy
     #build: ./bharat_energy_app
     command: python manage.py runserver 0.0.0.0:8000
     ports:
