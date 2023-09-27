@@ -5,22 +5,25 @@ pipeline {
         stage("Clone Code") {
             steps {
                 echo "Cloning the code"
-                git url:"https://github.com/harshalbhoyar/django-notes-app.git",branch: "main"
+                git url:"https://github.com/harshalbhoyar/bharat_energy.git",branch: "master"
             }
         }
         stage("build") {
             steps {
                 echo "Building the code"
-                sh "docker build -t my-note-app ."
+                sh "rm -rf Dockerfile"
+                dir('bharat_energy_app') {
+                    sh 'docker build -t bharat_energy .'
+                }
             }
         }
         stage("Push to Docker Hub") {
             steps {
                 echo "Pushing the image to Docker Hub"
                 withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
-                sh "docker tag my-note-app ${env.dockerHubUser}/my-note-app:latest"
+                sh "docker tag bharat_energy ${env.dockerHubUser}/bharat_energy:latest"
                 sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                sh "docker push ${env.dockerHubUser}/my-note-app:latest"
+                sh "docker push ${env.dockerHubUser}/bharat_energy:latest"
                 }
             }
         }
@@ -31,5 +34,32 @@ pipeline {
             }
         
         }
+    }
+}
+
+
+
+
+pipeline{
+    agent any
+    
+    stages{
+        stage("clone code"){
+            steps{
+                echo "cloning the code"
+                git url:"https://github.com/harshalbhoyar/bharat_energy.git",branch: "master"
+            }
+        }
+        
+        stage("build") {
+            steps {
+                echo "Building the code"
+                sh "rm -rf Dockerfile"
+                dir('bharat_energy_app') {
+                    sh 'docker build -t bharat_energy .'
+                }
+            }
+        }
+        
     }
 }
