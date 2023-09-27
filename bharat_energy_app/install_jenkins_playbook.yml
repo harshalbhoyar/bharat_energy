@@ -5,17 +5,8 @@
      java: "openjdk-11-jdk"
      jenkins:
        repo_URL: "https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key"
-    #  temp_folder: /tmp
-    #  jenkins_key: https://pkg.jenkins.io/debian-stable/jenkins.io.key
-    #  jenkins_repo: https://pkg.jenkins.io/debian-stable/jenkins.repo
-   
+
    tasks:
-
-    # - name: Include variables
-    #   include_vars:
-    #     dir: '../vars'
-    #     extensions: ['yml']
-
     - name: Download Jenkins repo apt URL for
       apt_key: 
         url: "{{jenkins.repo_URL}}"
@@ -40,7 +31,6 @@
       become: true
       become_user: root
 
-
     - name : Install jenkins
       apt:
         name: jenkins
@@ -54,72 +44,4 @@
         enabled: true
         state: started
 
-    
-
-
-
-    # - name: Install java  
-    #   yum:    
-    #     name: java    
-    #     state: present    
-    #     update_cache: yes
-    #   become: true
-    #   become_user: root
-
-    # - name: Add Jenkins Repository | Add Sources List
-    #   apt_repository:
-    #     name: jenkins
-    #     description: jenkins
-    #     baseurl: "{{ jenkins_repo }}"
-    #     gpgkey: "{{ jenkins_key }}"
-    #     gpgcheck: yes
-    #   become: true
-    #   become_user: root
-
-    # - name: Install jenkins 
-    #   apt:
-    #     name: jenkins
-    #     state: present    
-    #     update_cache: yes
-    #   become_user : root
-    #   become: true
-
-    # - name: Start Jenkins Service | Enable on Boot
-    #   service:
-    #     name: jenkins
-    #     state: started
-    #     enabled: yes
-    #   become: true
-    #   become_user: root
-
-    # - name: ensure the jenkins apt repository key is installed
-    #   apt_key: url=https://pkg.jenkins.io/debian/jenkins.io-2023.key state=present
-    #   become: yes
-
-    # - name: ensure the repository is configured
-    #   apt_repository: repo='deb https://pkg.jenkins.io/debian-stable binary/' state=present
-    #   become: yes
-
-    # - name: Update apt cache
-    #   apt:
-    #     update_cache: yes
-    #     state: latest
-
-
-    # - name: Install Jenkins
-    #   apt:
-    #     name: jenkins
-    #     state: latest
-
-    # - name: Start Jenkins
-    #   service: 
-    #     name: jenkins
-    #     enabled: true
-    #     state: started
-
-    # - name: ensure jenkins is installed
-    #   apt: name=jenkins update_cache=yes
-    #   become: yes
-
-    # - name: ensure jenkins is running
-    #   service: name=jenkins state=started
+  
