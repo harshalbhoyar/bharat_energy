@@ -1,15 +1,18 @@
-pipeline {
+pipeline{
     agent any
-
+    
     stages{
-        stage("Clone Code") {
-            steps {
-                echo "Cloning the code"
+        stage("clone code"){
+            steps{
+                echo "cloning the code"
                 git url:"https://github.com/harshalbhoyar/bharat_energy.git",branch: "master"
             }
         }
+        
         stage("build") {
             steps {
+                //echo "Cleaning up images and containers"
+                //sh 'docker-compose down -v ; docker rm -vf $(docker ps -aq) ; docker rmi -f $(docker images -aq)'
                 echo "Building the code"
                 sh "rm -rf Dockerfile"
                 dir('bharat_energy_app') {
@@ -17,6 +20,7 @@ pipeline {
                 }
             }
         }
+        
         stage("Push to Docker Hub") {
             steps {
                 echo "Pushing the image to Docker Hub"
@@ -32,34 +36,7 @@ pipeline {
                 echo "Deploying the container"
                 sh "docker-compose down && docker-compose up -d"
             }
-        
         }
     }
-}
-
-
-
-
-pipeline{
-    agent any
-    
-    stages{
-        stage("clone code"){
-            steps{
-                echo "cloning the code"
-                git url:"https://github.com/harshalbhoyar/bharat_energy.git",branch: "master"
-            }
-        }
-        
-        stage("build") {
-            steps {
-                echo "Building the code"
-                sh "rm -rf Dockerfile"
-                dir('bharat_energy_app') {
-                    sh 'docker build -t bharat_energy .'
-                }
-            }
-        }
-        
-    }
-}
+   
+ }
