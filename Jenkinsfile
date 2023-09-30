@@ -5,7 +5,7 @@ pipeline{
         stage("clone code"){
             steps{
                 echo "cloning the code"
-                git url:"https://github.com/harshalbhoyar/bharat_energy.git",branch: "master"
+                git url:"git@bitbucket.org:projects-webapp/bharat_energy_webapp.git",branch: "master"
             }
         }
         
