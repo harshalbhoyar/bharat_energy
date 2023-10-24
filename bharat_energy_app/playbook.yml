@@ -2,7 +2,8 @@
 - hosts: 127.0.0.1
 
   vars:
-    home: /home/harshalbhoyar/
+    # home: /home/harshalbhoyar/
+    home: /home/ubuntu/
     app_path: "{{ home }}Projects/bharat_energy_webapp/bharat_energy_app"
     virtualenv: "{{ home }}Projects/bharat_energy_webapp/bharat_energy_app/venv"
 
