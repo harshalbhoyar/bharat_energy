@@ -2,8 +2,7 @@
 - hosts: 127.0.0.1
 
   vars:
-    # home: /home/harshalbhoyar/
-    home: /home/ubuntu/
+    home: /home/harshalbhoyar/
     app_path: "{{ home }}Projects/bharat_energy_webapp/bharat_energy_app"
     virtualenv: "{{ home }}Projects/bharat_energy_webapp/bharat_energy_app/venv"
 
@@ -28,7 +27,7 @@
 
     - name: Checkout repository from bitbucket
       ansible.builtin.git:
-        # repo: git@bitbucket.org:projects-webapp/bharat_energy_webapp.git
+        repo: git@bitbucket.org:projects-webapp/bharat_energy_webapp.git
         repo: https://github.com/harshalbhoyar/bharat_energy.git
         dest: "{{ home }}projects_ansible"
 
