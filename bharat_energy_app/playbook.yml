@@ -28,7 +28,8 @@
 
     - name: Checkout repository from bitbucket
       ansible.builtin.git:
-        repo: git@bitbucket.org:projects-webapp/bharat_energy_webapp.git
+        # repo: git@bitbucket.org:projects-webapp/bharat_energy_webapp.git
+        repo: https://github.com/harshalbhoyar/bharat_energy.git
         dest: "{{ home }}projects_ansible"
 
     
